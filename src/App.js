@@ -13,7 +13,7 @@ function App() {
     reader.readAsBinaryString(e.target.files[0]);
     reader.onload = (e) => {
       const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary", sheetRows: 5 });
+      const workbook = XLSX.read(data, { type: "binary", sheetRows: 50 });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
       const parsedData = XLSX.utils.sheet_to_json(sheet);
@@ -21,9 +21,15 @@ function App() {
     };
   }
 
-  function get_output(){
+  function get_output_stroke(){
     //const tokenId = document.querySelector("#value3").value;
-    document.getElementById("demo").innerHTML = Math.floor(Math.random() * 2);
+    document.getElementById("demo1").innerHTML = Math.floor(Math.random() * 2);
+    //setoutput(Math.floor(Math.random() * 2));
+  }
+
+  function get_output_diabetes(){
+    //const tokenId = document.querySelector("#value3").value;
+    document.getElementById("demo2").innerHTML = Math.floor(Math.random() * 2);
     //setoutput(Math.floor(Math.random() * 2));
   }
 
@@ -38,7 +44,7 @@ function App() {
         onChange={handleFileUpload} 
       />
 
-      <h1>Displaying first five rows of the excel sheet</h1>
+      <h1>Displaying first 50 records of the Health sheet data</h1>
 
       {data.length > 0 && (
         <table className="table">
@@ -64,12 +70,30 @@ function App() {
       <br /><br />
       
 
-      <label for="name">Name</label>
-      <input type = "text" id = "name" name = "name"></input>
-      <label for="age">Age</label>
-      <input type = "text" id = "age" name = "age"></input>
-      <button onClick={get_output}>Get predicted value</button>
-      <p id="demo">Output is:</p>
+      <label for="Age">Age</label>
+      <input type = "text" id = "Age" name = "Age"></input>
+      <label for="Highchol">Highchol</label>
+      <input type = "text" id = "HighChol" name = "HighChol"></input>
+      <label for="GenHlth">GenHlth</label>
+      <input type = "text" id = "GenHlth" name = "GenHlth"></input>
+      <br /><br />
+      <label for="DiffWalk">DiffWalk</label>
+      <input type = "text" id = "DiffWalk" name = "DiffWalk"></input>
+      <label for="Fruits">Fruits</label>
+      <input type = "text" id = "Fruits" name = "Fruits"></input>
+      <label for="PhysActivity">PhysActivity</label>
+      <input type = "text" id = "PhysActivity" name = "PhysActivity"></input>
+      <br /><br />
+      <label for="HeartDiseaseorAttack">HeartDiseaseorAttack</label>
+      <input type = "text" id = "HeartDiseaseorAttack" name = "HeartDiseaseorAttack"></input>
+      <label for="PhysHealth">PhysHealth</label>
+      <input type = "text" id = "PhysHealth" name = "PhysHealth"></input>
+      <br /><br />
+      <button onClick={get_output_stroke}>Get predicted value for Stroke</button>
+      <p id="demo1">Value:</p>
+      <button onClick={get_output_diabetes}>Get predicted value for Diabetes</button>
+      <p id="demo2">Value:</p>
+      
 
     </div>
   );
